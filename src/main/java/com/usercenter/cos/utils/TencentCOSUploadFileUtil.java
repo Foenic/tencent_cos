@@ -39,7 +39,7 @@ public class TencentCOSUploadFileUtil {
     // 创建COS 凭证
     private static final COSCredentials CREDENTIALS = new BasicCOSCredentials(SECRET_ID,SECRET_KEY);
     // 配置 COS 区域 就购买时选择的区域
-    private static final ClientConfig CLIENT_CONFIG = new ClientConfig(new Region("ap-shanghai"));
+    private static final ClientConfig CLIENT_CONFIG = new ClientConfig(new Region(cosConfig.getRegionName()));
 
     public static String uploadfile(MultipartFile file){
         // 创建 COS 客户端连接
