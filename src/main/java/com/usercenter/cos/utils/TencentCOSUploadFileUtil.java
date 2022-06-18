@@ -7,6 +7,7 @@ import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.region.Region;
+import com.usercenter.cos.config.COSConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,16 +25,17 @@ import java.util.Random;
  */
 @Slf4j
 public class TencentCOSUploadFileUtil {
+    static COSConfig cosConfig  = SpringBeanUtils.getBean(COSConfig.class);
     // 存储桶名称
-    private static final String BUCKET_NAME = "xingqiu-tuchuang-1256524210";
+    private static final String BUCKET_NAME = cosConfig.getBucketName();
     //secretId 秘钥id
-    private static final String SECRET_ID = "AKIDb0B7nDOJzPaVBbmhNnzwd5HDuLXT9alg";
+    private static final String SECRET_ID = cosConfig.getAccessKey();
     //SecretKey 秘钥
-    private static final String SECRET_KEY = "h9LHyPaWCcmhMlvpUt3yykGXYJo44oJY";
+    private static final String SECRET_KEY = cosConfig.getSecretKey();
     // 腾讯云 自定义文件夹名称
-    private static final String PREFIX = "/12138/";
+    private static final String PREFIX = cosConfig.getFolderPrefix();
     // 访问域名
-    public static final String URL = "https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com";
+    public static final String URL = cosConfig.getBaseUrl();
     // 创建COS 凭证
     private static final COSCredentials CREDENTIALS = new BasicCOSCredentials(SECRET_ID,SECRET_KEY);
     // 配置 COS 区域 就购买时选择的区域
